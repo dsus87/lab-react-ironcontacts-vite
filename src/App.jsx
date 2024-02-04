@@ -35,9 +35,6 @@ function App() {
 
 // Sort by Name function
 
-
-
-
 const sortByName = () => {
   const sortedContacts = [...contacts].sort((a, b) =>  // use spread operator to create copy prevents mutalating original state
   a.name.localeCompare(b.name));
@@ -51,6 +48,14 @@ const sortByPopularity = () => {
   setContacts(sortedContacts);
 };
 
+
+
+// delete function 
+const deleteContact = (id) => {
+  const updatedContacts = contacts.filter(contact => 
+    contact.id !== id); //shows the contact if the id does NOT match the id we're looking to delete
+  setContacts(updatedContacts);
+};
 
 
 
@@ -72,6 +77,8 @@ const sortByPopularity = () => {
             <th>Popularity</th>
             <th>Won Oscar</th>
             <th>Won an Emmy</th>
+            <th>Delete</th> 
+
           </tr>
         </thead>
         <tbody>
@@ -85,6 +92,8 @@ const sortByPopularity = () => {
               <td>{contact.popularity.toFixed(2)}</td>
               <td>{contact.wonOscar ? '🏆' : ''}</td>
               <td>{contact.wonEmmy ? '🌟' : ''}</td>
+             <td> <button onClick={() => deleteContact(contact.id)}>Delete</button></td>
+
 
             </tr>
           ))}
