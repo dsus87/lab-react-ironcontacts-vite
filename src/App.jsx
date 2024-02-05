@@ -63,16 +63,17 @@ const deleteContact = (id) => {
     <div className="App">
       <h1>LAB | React IronContacts</h1>
 
-      <button onClick={addRandomContact}>Add Random Contact</button>
-      <button onClick={sortByName}>Sort by Name</button>
-      <button onClick={sortByPopularity}>Sort by Popularity</button>
+      <div className="flex justify-between py-5">
+      <button   class="btn btn-outline btn-primary" onClick={addRandomContact}>Add Random Contact</button>
+      <button   class="btn btn-outline btn-primary" onClick={sortByName}>Sort by Name</button>
+      <button   class="btn btn-outline btn-primary" onClick={sortByPopularity}>Sort by Popularity</button>
+      </div>
 
 
-
-      <table>
+      <table className="table py-5">
         <thead>
           <tr>
-            <th>Picture</th>
+            <th >Picture</th>
             <th>Name</th>
             <th>Popularity</th>
             <th>Won Oscar</th>
@@ -87,12 +88,21 @@ const deleteContact = (id) => {
           {contacts.map((contact) => ( 
 
             <tr key={contact.id}>  {/* Key prop helps React identify which items have changed for efficient re-rendering */}
-              <td><img src={contact.pictureUrl} alt={contact.name} style={{width: '50px'}}/></td>
+              <td>
+              <div class="avatar">
+              <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              
+              <img src={contact.pictureUrl} alt={contact.name}/>
+              
+              </div>
+              </div>
+              
+              </td>
               <td>{contact.name}</td>
               <td>{contact.popularity.toFixed(2)}</td>
               <td>{contact.wonOscar ? '🏆' : ''}</td>
               <td>{contact.wonEmmy ? '🌟' : ''}</td>
-             <td> <button onClick={() => deleteContact(contact.id)}>Delete</button></td>
+             <td> <button className="btn btn-ghost btn-xs" onClick={() => deleteContact(contact.id)}>Delete</button></td>
 
 
             </tr>
